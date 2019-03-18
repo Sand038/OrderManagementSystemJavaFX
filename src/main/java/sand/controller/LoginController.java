@@ -7,7 +7,7 @@ import java.net.URL;
 import herudi.animations.FadeInLeftTransition;
 import herudi.animations.FadeInLeftTransition1;
 import herudi.animations.FadeInRightTransition;
-import herudi.config.config;
+import herudi.config.Config;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,13 +85,13 @@ public class LoginController implements Initializable
   {
     if (txtUsername.getText().equals("test") && txtPassword.getText().equals("test"))
     {
-      config c = new config();
-      c.newStage(stage, lblClose, "/sand/view/Main.fxml", "Order management system", true, StageStyle.UNDECORATED,
+      Config c = new Config();
+      c.newStage(lblClose, "/sand/view/Main.fxml", "Order management system", true, StageStyle.UNDECORATED,
           false);
     }
     else
     {
-      config.dialog(Alert.AlertType.ERROR, "Error login, Please check username and password");
+      Config.dialog(Alert.AlertType.ERROR, "Error login, Please check username and password");
     }
   }
 

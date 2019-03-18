@@ -27,7 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import herudi.animations.FadeInUpTransition;
-import herudi.config.config;
+import herudi.config.Config;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
@@ -236,17 +236,17 @@ public class OrderController implements Initializable
       //            crud = ctx.getBean(interCustomer.class);
       listData = FXCollections.observableArrayList();
       status = 0;
-      config.setModelColumn(colOrderId, "orderId");
-      config.setModelColumn(colDate, "date");
-      config.setModelColumn(colCustomerName, "customerName");
-      config.setModelColumn(colPatientID, "patientId");
-      config.setModelColumn(colOne, "fixedCheckboxValues");
-      config.setModelColumn(colTwo, "removableCheckboxValues");
-      config.setModelColumn(colThree, "implantCheckboxValues");
-      config.setModelColumn(colTeethSelectionType, "toothSelectionType");
-      config.setModelColumn(colTeethNumbers, "toothNumbers");
-      config.setModelColumn(colToothDropDownText, "toothDropDownText");
-      config.setModelColumn(colToothTextArea, "toothText");
+      Config.setModelColumn(colOrderId, "orderId");
+      Config.setModelColumn(colDate, "date");
+      Config.setModelColumn(colCustomerName, "customerName");
+      Config.setModelColumn(colPatientID, "patientId");
+      Config.setModelColumn(colOne, "fixedCheckboxValues");
+      Config.setModelColumn(colTwo, "removableCheckboxValues");
+      Config.setModelColumn(colThree, "implantCheckboxValues");
+      Config.setModelColumn(colTeethSelectionType, "toothSelectionType");
+      Config.setModelColumn(colTeethNumbers, "toothNumbers");
+      Config.setModelColumn(colToothDropDownText, "toothDropDownText");
+      Config.setModelColumn(colToothTextArea, "toothText");
       colAction
           .setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Object, Boolean>, ObservableValue<Boolean>>()
           {
@@ -465,7 +465,7 @@ public class OrderController implements Initializable
   {
     if (txtState.getText().length() > 2)
     {
-      config.dialog(Alert.AlertType.INFORMATION, "State Must 2 Char");
+      Config.dialog(Alert.AlertType.INFORMATION, "State Must 2 Char");
       txtState.clear();
     }
   }
@@ -563,12 +563,12 @@ public class OrderController implements Initializable
   {
     if (startDate.getValue() == null)
     {
-      config.dialog(Alert.AlertType.ERROR, "Please select the start date. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please select the start date. . .");
       return;
     }
     else if (endDate.getValue() == null)
     {
-      config.dialog(Alert.AlertType.ERROR, "Please select the end date. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please select the end date. . .");
       return;
     }
     listData.clear();
@@ -676,7 +676,7 @@ public class OrderController implements Initializable
     }
     catch (RuntimeException e)
     {
-      config.dialog(Alert.AlertType.ERROR, "Table view is empty. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Table view is empty. . .");
       tableDocument.close();
     }
   }
@@ -704,35 +704,35 @@ public class OrderController implements Initializable
   {
     if (customerName.getText() == null || (customerName.getText().replaceAll("\\s+", "")).equals(""))
     {
-      config.dialog(Alert.AlertType.ERROR, "Please enter the customer name. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please enter the customer name. . .");
       previous(null);
       customerName.requestFocus();
       return;
     }
     if (patientID.getText() == null || (patientID.getText().replaceAll("\\s+", "")).equals(""))
     {
-      config.dialog(Alert.AlertType.ERROR, "Please enter the patient ID. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please enter the patient ID. . .");
       previous(null);
       patientID.requestFocus();
       return;
     }
     if (date.getValue() == null)
     {
-      config.dialog(Alert.AlertType.ERROR, "Please select a date. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please select a date. . .");
       previous(null);
       date.requestFocus();
       return;
     }
     if (!btnSingle.isSelected() && !btnBridge.isSelected())
     {
-      config.dialog(Alert.AlertType.ERROR, "Please select the tooth type. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please select the tooth type. . .");
       previous(null);
       txtId.requestFocus();
       return;
     }
     if (getCombinedTeethNumbers().equals(""))
     {
-      config.dialog(Alert.AlertType.ERROR, "Please select the teeth numbers. . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please select the teeth numbers. . .");
       previous(null);
       txtId.requestFocus();
       return;
@@ -760,7 +760,7 @@ public class OrderController implements Initializable
     if (toothComboBoxOne.getValue() == null || toothComboBoxTwo.getValue() == null
         || toothComboBoxThree.getValue() == null)
     {
-      config.dialog(Alert.AlertType.ERROR, "Please select a value from all drop downs . . .");
+      Config.dialog(Alert.AlertType.ERROR, "Please select a value from all drop downs . . .");
       toothComboBoxOne.requestFocus();
       return;
     }
@@ -793,7 +793,7 @@ public class OrderController implements Initializable
     }
     clear();
     selectData();
-    config.dialog(Alert.AlertType.INFORMATION, "Data saved successfully. . .");
+    Config.dialog(Alert.AlertType.INFORMATION, "Data saved successfully. . .");
     aksiBack(null);
   }
 

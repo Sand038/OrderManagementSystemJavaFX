@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 import java.net.URL;
 
-import herudi.config.config;
+import herudi.config.Config;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +54,7 @@ public class MenuController implements Initializable
   @FXML
   private AnchorPane paneData;
 
-  config con = new config();
+  Config con = new Config();
 
   @FXML
   private Button btnLogout;
@@ -76,7 +76,7 @@ public class MenuController implements Initializable
       maximize.getStyleClass().add("decoration-button-restore");
       resize.setVisible(false);
       listMenu.getSelectionModel().select(0);
-      con.loadAnchorPane(paneData, "Order.fxml");
+      con.loadAnchorPane(paneData, "/sand/view/Order.fxml");
       listMenu.requestFocus();
     });
   }
@@ -168,7 +168,7 @@ public class MenuController implements Initializable
     {
       case 0:
       {
-        con.loadAnchorPane(paneData, "Order.fxml");
+        con.loadAnchorPane(paneData, "/sand/view/Order.fxml");
       }
       break;
       case 1:
@@ -187,8 +187,8 @@ public class MenuController implements Initializable
   @FXML
   private void aksiLogout(ActionEvent event)
   {
-    config config = new config();
-    config.newStage2(stage, btnLogout, "/sand/view/Login.fxml", "Sample Apps", true, StageStyle.UNDECORATED, false);
+    Config config = new Config();
+    config.newStage(btnLogout, "/sand/view/Login.fxml", "Sample Apps", true, StageStyle.UNDECORATED, false);
   }
 
 }

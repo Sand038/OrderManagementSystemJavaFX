@@ -6,7 +6,7 @@ import java.net.URL;
 
 import herudi.animations.FadeInLeftTransition;
 import herudi.animations.FadeInTransition;
-import herudi.config.config;
+import herudi.config.Config;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -112,8 +112,8 @@ public class SplashController implements Initializable
       new FadeInTransition(vboxBottom).play();
     });
     service.setOnSucceeded((WorkerStateEvent event) -> {
-      config config = new config();
-      config.newStage(stage, lblClose, "/sand/view/Login.fxml", "Sample Apps", true, StageStyle.UNDECORATED, false);
+      Config config = new Config();
+      config.newStage(lblClose, "/sand/view/Login.fxml", "Sample Apps", true, StageStyle.UNDECORATED, false);
     });
   }
 }
