@@ -49,9 +49,6 @@ public class LoginController implements Initializable
   private Button btnLogin;
 
   @FXML
-  private Text lblRudyCom;
-
-  @FXML
   private Label lblClose;
 
   Stage stage;
@@ -77,7 +74,6 @@ public class LoginController implements Initializable
         System.exit(0);
       });
     });
-    // TODO
   }
 
   @FXML
@@ -86,8 +82,7 @@ public class LoginController implements Initializable
     if (txtUsername.getText().equals("test") && txtPassword.getText().equals("test"))
     {
       Config c = new Config();
-      c.newStage(lblClose, "/sand/view/Main.fxml", "Order management system", true, StageStyle.UNDECORATED,
-          false);
+      c.newStage(lblClose, "/sand/view/Main.fxml", "Order management system", true, StageStyle.UNDECORATED, false);
     }
     else
     {

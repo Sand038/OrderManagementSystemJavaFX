@@ -42,11 +42,11 @@ public class MenuController implements Initializable
   @FXML
   private Label title;
 
-  Stage stage;
+  private Stage stage;
 
-  Rectangle2D rec2;
+  private Rectangle2D rec2;
 
-  Double w, h;
+  private Double w, h;
 
   @FXML
   private ListView<String> listMenu;
@@ -54,7 +54,7 @@ public class MenuController implements Initializable
   @FXML
   private AnchorPane paneData;
 
-  Config con = new Config();
+  private Config con = new Config();
 
   @FXML
   private Button btnLogout;

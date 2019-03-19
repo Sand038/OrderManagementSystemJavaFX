@@ -40,7 +40,7 @@ public class SplashController implements Initializable
   @FXML
   private Label lblClose;
 
-  Stage stage;
+  private Stage stage;
 
   @FXML
   private ImageView imgLoading;
@@ -59,30 +59,10 @@ public class SplashController implements Initializable
       Platform.exit();
       System.exit(0);
     });
-    // TODO
   }
 
   private void longStart()
   {
-    //        Service<ApplicationContext> service = new Service<ApplicationContext>() {
-    //            @Override
-    //            protected Task<ApplicationContext> createTask() {
-    //                return new Task<ApplicationContext>() {
-    //                    @Override
-    //                    protected ApplicationContext call() throws Exception {
-    ////                        ApplicationContext appContex = config.getInstance().getApplicationContext();
-    ////                        int max = appContex.getBeanDefinitionCount();
-    ////                        updateProgress(0, max);
-    ////                        for (int k = 0; k < max; k++) {
-    ////                            Thread.sleep(50);
-    ////                            updateProgress(k+1, max);
-    ////                        }
-    //                        return Service;
-    //                    }
-    //                };
-    //            }
-    //        };
-
     Service<ObservableList> service = new Service<ObservableList>()
     {
       @Override

@@ -221,8 +221,6 @@ public class OrderController implements Initializable
 
   private List<String> toothSelectionList;
 
-  //    private List<CheckBox> fixedCheckboxValueList = new ArrayList<>();
-
   /**
    * Initializes the controller class.
    * @param url
@@ -232,8 +230,6 @@ public class OrderController implements Initializable
   public void initialize(URL url, ResourceBundle rb)
   {
     Platform.runLater(() -> {
-      //            ApplicationContext ctx = config.getInstance().getApplicationContext();
-      //            crud = ctx.getBean(interCustomer.class);
       listData = FXCollections.observableArrayList();
       status = 0;
       Config.setModelColumn(colOrderId, "orderId");
@@ -410,12 +406,8 @@ public class OrderController implements Initializable
 
   private void selectData()
   {
-    //        if(listData == null){
-    //            listData = FXCollections.observableArrayList(crud.select());
-    //        }else {
     listData.clear();
     listData.addAll(OrderDBOperations.getInstance().getOrders());
-    //        }
     tableData.setItems(listData);
   }
 
@@ -432,7 +424,6 @@ public class OrderController implements Initializable
           @Override
           protected Integer call() throws Exception
           {
-            //                        Integer max = crud.select().size();
             Integer max = 1;
             if (max > 35)
             {
