@@ -51,8 +51,6 @@ public class LoginController implements Initializable
   @FXML
   private Label lblClose;
 
-  Stage stage;
-
   /**
    * Initializes the controller class.
    * @param url
