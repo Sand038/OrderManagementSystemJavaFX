@@ -39,12 +39,7 @@ public class SplashController implements Initializable
 
   @FXML
   private Label lblClose;
-
-  private Stage stage;
-
-  @FXML
-  private ImageView imgLoading;
-
+  
   /**
    * Initializes the controller class.
    *
