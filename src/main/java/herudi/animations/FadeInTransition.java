@@ -8,35 +8,31 @@ import javafx.util.Duration;
 
 /**
  * Animate a fade in effect on a node
- * 
+ *
  * Port of FadeIn from Animate.css http://daneden.me/animate by Dan Eden
- * 
+ *
  * {@literal @}keyframes fadeIn {
- * 	0% {opacity: 0;}	
+ * 	0% {opacity: 0;}
  * 	100% {opacity: 1;}
  * }
- * 
+ *
  * @author Jasper Potts
  */
 @SuppressWarnings("deprecation")
-public class FadeInTransition extends configAnimasi {
-    /**
-     * Create new FadeInTransition
-     * 
-     * @param node The node to affect
-     */
-    public FadeInTransition(final Node node) {
-        super(
-            node,
-            TimelineBuilder.create()
-                .keyFrames(
-                    new KeyFrame(Duration.millis(0),    new KeyValue(node.opacityProperty(), 0, WEB_EASE)),
-                    new KeyFrame(Duration.millis(1000),  new KeyValue(node.opacityProperty(), 1, WEB_EASE))
-                )
-                .build()
-            );
-        setCycleDuration(Duration.seconds(2));
-        setDelay(Duration.seconds(0.2));
-        
-    }
+public class FadeInTransition extends AnimationConfiguration
+{
+  /**
+   * Create new FadeInTransition
+   *
+   * @param node The node to affect
+   */
+  public FadeInTransition(final Node node)
+  {
+    super(node, TimelineBuilder.create()
+        .keyFrames(new KeyFrame(Duration.millis(0), new KeyValue(node.opacityProperty(), 0, WEB_EASE)),
+            new KeyFrame(Duration.millis(1000), new KeyValue(node.opacityProperty(), 1, WEB_EASE))).build());
+    setCycleDuration(Duration.seconds(2));
+    setDelay(Duration.seconds(0.2));
+
+  }
 }
