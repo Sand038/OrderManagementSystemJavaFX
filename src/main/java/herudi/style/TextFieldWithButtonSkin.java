@@ -1,7 +1,7 @@
 package herudi.style;
 
-import com.sun.javafx.scene.control.behavior.TextFieldBehavior;
 import com.sun.javafx.scene.control.skin.TextFieldSkin;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -15,105 +15,117 @@ import javafx.scene.layout.StackPane;
 /**
  * Created by pedro_000 on 12/15/13.
  */
-public class TextFieldWithButtonSkin extends TextFieldSkin{
-    private StackPane rightButton;
-    private Region rightButtonGraphic;
+public class TextFieldWithButtonSkin extends TextFieldSkin
+{
+  private StackPane rightButton;
 
-    protected TextField textField;
+  private Region rightButtonGraphic;
 
-    public TextFieldWithButtonSkin(TextField textField) {
-        super(textField);
+  protected TextField textField;
 
-        this.textField = textField;
+  public TextFieldWithButtonSkin(TextField textField)
+  {
+    super(textField);
 
-        rightButton = new StackPane();
-        rightButton.getStyleClass().setAll("right-button");
-        rightButton.setFocusTraversable(false);
+    this.textField = textField;
 
-        rightButtonGraphic = new Region();
-        rightButtonGraphic.getStyleClass().setAll("right-button-graphic");
-        rightButtonGraphic.setFocusTraversable(false);
+    rightButton = new StackPane();
+    rightButton.getStyleClass().setAll("right-button");
+    rightButton.setFocusTraversable(false);
 
-        rightButtonGraphic.setMaxWidth(Region.USE_PREF_SIZE);
-        rightButtonGraphic.setMaxHeight(Region.USE_PREF_SIZE);
+    rightButtonGraphic = new Region();
+    rightButtonGraphic.getStyleClass().setAll("right-button-graphic");
+    rightButtonGraphic.setFocusTraversable(false);
 
-        rightButton.setVisible(false);
-        rightButtonGraphic.setVisible(false);
+    rightButtonGraphic.setMaxWidth(Region.USE_PREF_SIZE);
+    rightButtonGraphic.setMaxHeight(Region.USE_PREF_SIZE);
 
-        rightButton.getChildren().add(rightButtonGraphic);
-        getChildren().add(rightButton);
+    rightButton.setVisible(false);
+    rightButtonGraphic.setVisible(false);
 
-        setupListeners();
-    }
+    rightButton.getChildren().add(rightButtonGraphic);
+    getChildren().add(rightButton);
 
-    private void setupListeners() {
+    setupListeners();
+  }
 
-        final TextField textField = getSkinnable();
-        rightButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                rightButtonPressed();
-            }
-        });
-        rightButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                rightButtonReleased();
-            }
-        });
+  private void setupListeners()
+  {
 
-        textField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                textChanged();
-            }
-        });
-        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                focusChanged();
-            }
-        });
-    }
-
-    protected void textChanged()
+    final TextField textField = getSkinnable();
+    rightButton.setOnMousePressed(new EventHandler<MouseEvent>()
     {
-        if (textField.getText() == null)
-            return;
-
-        rightButton.setVisible(!textField.getText().isEmpty());
-        rightButtonGraphic.setVisible(!textField.getText().isEmpty());
-    }
-
-    protected void focusChanged()
+      @Override
+      public void handle(MouseEvent event)
+      {
+        rightButtonPressed();
+      }
+    });
+    rightButton.setOnMouseReleased(new EventHandler<MouseEvent>()
     {
-        if (textField.getText() == null)
-            return;
+      @Override
+      public void handle(MouseEvent event)
+      {
+        rightButtonReleased();
+      }
+    });
 
-        rightButton.setVisible(textField.isFocused() && !textField.getText().isEmpty());
-        rightButtonGraphic.setVisible(textField.isFocused() && !textField.getText().isEmpty());
-    }
-
-    @Override
-    protected void layoutChildren(double x, double y, double w, double h) {
-        super.layoutChildren(x, y, w, h);
-
-        final double clearGraphicWidth = snapSize(rightButtonGraphic.prefWidth(-1));
-        final double clearButtonWidth = rightButton.snappedLeftInset() + clearGraphicWidth + rightButton.snappedRightInset();
-
-        rightButton.resize(clearButtonWidth, h);
-        positionInArea(rightButton,
-                (x+w) - clearButtonWidth, y,
-                clearButtonWidth, h, 0, HPos.CENTER, VPos.CENTER);
-    }
-
-    protected void rightButtonPressed()
+    textField.textProperty().addListener(new ChangeListener<String>()
     {
-    }
-
-    protected void rightButtonReleased()
+      @Override
+      public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+      {
+        textChanged();
+      }
+    });
+    textField.focusedProperty().addListener(new ChangeListener<Boolean>()
     {
+      @Override
+      public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue)
+      {
+        focusChanged();
+      }
+    });
+  }
 
-    }
+  protected void textChanged()
+  {
+    if (textField.getText() == null)
+      return;
+
+    rightButton.setVisible(!textField.getText().isEmpty());
+    rightButtonGraphic.setVisible(!textField.getText().isEmpty());
+  }
+
+  protected void focusChanged()
+  {
+    if (textField.getText() == null)
+      return;
+
+    rightButton.setVisible(textField.isFocused() && !textField.getText().isEmpty());
+    rightButtonGraphic.setVisible(textField.isFocused() && !textField.getText().isEmpty());
+  }
+
+  @Override
+  protected void layoutChildren(double x, double y, double w, double h)
+  {
+    super.layoutChildren(x, y, w, h);
+
+    final double clearGraphicWidth = snapSize(rightButtonGraphic.prefWidth(-1));
+    final double clearButtonWidth =
+        rightButton.snappedLeftInset() + clearGraphicWidth + rightButton.snappedRightInset();
+
+    rightButton.resize(clearButtonWidth, h);
+    positionInArea(rightButton, (x + w) - clearButtonWidth, y, clearButtonWidth, h, 0, HPos.CENTER, VPos.CENTER);
+  }
+
+  protected void rightButtonPressed()
+  {
+  }
+
+  protected void rightButtonReleased()
+  {
+
+  }
 
 }
