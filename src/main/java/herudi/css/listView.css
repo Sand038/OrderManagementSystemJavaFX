@@ -9,7 +9,7 @@
     -fx-cell-size: 3.4em; /* 24 */
     -fx-font: 12px "Segoe UI Semibold";
     -fx-alignment: CENTER_LEFT;
-    -fx-border-color:transparent;
+    -fx-border-color: transparent;
 }
 
 .list-cell:filled:hover {
@@ -17,13 +17,13 @@
     -fx-text-fill: white;
 }
 
-.list-view{
+.list-view {
     -fx-background-color: #2b579a;
     -fx-border-insets: 0;
     -fx-background-insets: 0;
 }
 
-.scroll-bar .thumb{
+.scroll-bar .thumb {
     -fx-background-color: #cdcdcd;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
@@ -56,7 +56,7 @@
     -fx-padding: 0.25em; /* 3 */
 }
 
-.scroll-bar .increment-button:hover, .scroll-bar .decrement-button:hover  {
+.scroll-bar .increment-button:hover, .scroll-bar .decrement-button:hover {
     -fx-background-color: #dadada;
 }
 
