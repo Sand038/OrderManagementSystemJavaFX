@@ -8,7 +8,6 @@ import herudi.animations.FadeInLeftTransition;
 import herudi.animations.FadeInRightTransition;
 import herudi.config.Config;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -73,7 +72,7 @@ public class LoginController implements Initializable
   }
 
   @FXML
-  private void aksiLogin(ActionEvent event)
+  private void login()
   {
     if (txtUsername.getText().equals("test") && txtPassword.getText().equals("test"))
     {

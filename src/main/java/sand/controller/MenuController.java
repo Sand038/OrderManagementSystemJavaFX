@@ -6,14 +6,11 @@ import java.net.URL;
 
 import herudi.config.Config;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -24,8 +21,18 @@ import javafx.stage.StageStyle;
  */
 public class MenuController implements Initializable
 {
-  @FXML
-  private Button close;
+
+  private static final String DECORATION_BUTTON_RESTORE = "decoration-button-restore";
+
+  private Config con = new Config();
+
+  private Stage stage;
+
+  private Rectangle2D rec2;
+
+  private Double width;
+
+  private Double height;
 
   @FXML
   private Button maximize;
@@ -40,21 +47,10 @@ public class MenuController implements Initializable
   private Button fullscreen;
 
   @FXML
-  private Label title;
-
-  private Stage stage;
-
-  private Rectangle2D rec2;
-
-  private Double w, h;
-
-  @FXML
   private ListView<String> listMenu;
 
   @FXML
   private AnchorPane paneData;
-
-  private Config con = new Config();
 
   @FXML
   private Button btnLogout;
@@ -68,12 +64,12 @@ public class MenuController implements Initializable
   public void initialize(URL url, ResourceBundle rb)
   {
     rec2 = Screen.getPrimary().getVisualBounds();
-    w = 0.1;
-    h = 0.1;
+    width = 0.1;
+    height = 0.1;
     listMenu.getItems().addAll("  Orders", "  Clinics", "  Invoices");
     Platform.runLater(() -> {
       stage = (Stage) maximize.getScene().getWindow();
-      maximize.getStyleClass().add("decoration-button-restore");
+      maximize.getStyleClass().add(DECORATION_BUTTON_RESTORE);
       resize.setVisible(false);
       listMenu.getSelectionModel().select(0);
       con.loadAnchorPane(paneData, "/sand/view/Order.fxml");
@@ -82,24 +78,24 @@ public class MenuController implements Initializable
   }
 
   @FXML
-  private void aksiMaximized(ActionEvent event)
+  private void maximize()
   {
     stage = (Stage) maximize.getScene().getWindow();
     if (stage.isMaximized())
     {
-      if (w == rec2.getWidth() && h == rec2.getHeight())
+      if (width == rec2.getWidth() && height == rec2.getHeight())
       {
         stage.setMaximized(false);
         stage.setHeight(600);
         stage.setWidth(800);
         stage.centerOnScreen();
-        maximize.getStyleClass().remove("decoration-button-restore");
+        maximize.getStyleClass().remove(DECORATION_BUTTON_RESTORE);
         resize.setVisible(true);
       }
       else
       {
         stage.setMaximized(false);
-        maximize.getStyleClass().remove("decoration-button-restore");
+        maximize.getStyleClass().remove(DECORATION_BUTTON_RESTORE);
         resize.setVisible(true);
       }
 
@@ -108,22 +104,22 @@ public class MenuController implements Initializable
     {
       stage.setMaximized(true);
       stage.setHeight(rec2.getHeight());
-      maximize.getStyleClass().add("decoration-button-restore");
+      maximize.getStyleClass().add(DECORATION_BUTTON_RESTORE);
       resize.setVisible(false);
     }
   }
 
   @FXML
-  private void aksiminimize(ActionEvent event)
+  private void minimize()
   {
     stage = (Stage) minimize.getScene().getWindow();
     if (stage.isMaximized())
     {
-      w = rec2.getWidth();
-      h = rec2.getHeight();
+      width = rec2.getWidth();
+      height = rec2.getHeight();
       stage.setMaximized(false);
-      stage.setHeight(h);
-      stage.setWidth(w);
+      stage.setHeight(height);
+      stage.setWidth(width);
       stage.centerOnScreen();
       Platform.runLater(() -> {
         stage.setIconified(true);
@@ -136,12 +132,13 @@ public class MenuController implements Initializable
   }
 
   @FXML
-  private void aksiResize(ActionEvent event)
+  private void resize()
   {
+    //TODO
   }
 
   @FXML
-  private void aksifullscreen(ActionEvent event)
+  private void fullscreen()
   {
     stage = (Stage) fullscreen.getScene().getWindow();
     if (stage.isFullScreen())
@@ -155,37 +152,31 @@ public class MenuController implements Initializable
   }
 
   @FXML
-  private void aksiClose(ActionEvent event)
+  private void close()
   {
     Platform.exit();
     System.exit(0);
   }
 
   @FXML
-  private void aksiKlikListMenu(MouseEvent event)
+  private void clickListMenu()
   {
     switch (listMenu.getSelectionModel().getSelectedIndex())
     {
       case 0:
-      {
         con.loadAnchorPane(paneData, "/sand/view/Order.fxml");
-      }
-      break;
+        break;
       case 1:
-      {
         //                con.loadAnchorPane(paneData, "product.fxml");
-      }
-      break;
+        break;
       case 2:
-      {
         //                con.loadAnchorPane(paneData, "micro.fxml");
-      }
-      break;
+        break;
     }
   }
 
   @FXML
-  private void aksiLogout(ActionEvent event)
+  private void logout()
   {
     Config config = new Config();
     config.newStage(btnLogout, "/sand/view/Login.fxml", "Sample Apps", true, StageStyle.UNDECORATED, false);

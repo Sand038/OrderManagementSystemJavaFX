@@ -42,7 +42,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -57,8 +56,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -113,10 +110,7 @@ public class OrderController implements Initializable
   private TableColumn<Order, String> colToothTextArea;
 
   @FXML
-  private Button btnNew;
-
-  @FXML
-  private AnchorPane paneTabel;
+  private AnchorPane paneTable;
 
   @FXML
   private AnchorPane paneCrud;
@@ -126,9 +120,6 @@ public class OrderController implements Initializable
 
   @FXML
   private TextField txtId;
-
-  @FXML
-  private ComboBox cbZip;
 
   @FXML
   private DatePicker date;
@@ -143,42 +134,7 @@ public class OrderController implements Initializable
   private CheckBox fixed1, fixed2, fixed3, fixed4, fixed5, fixed6, fixed7, fixed8, fixed9, fixed10, fixed11;
 
   @FXML
-  private TextField txtName;
-
-  @FXML
   private TextField customerName;
-
-  @FXML
-  private TextArea txtAddress1;
-
-  @FXML
-  private TextArea txtAddress2;
-
-  @FXML
-  private TextField txtCity;
-
-  @FXML
-  private TextField txtState;
-
-  @FXML
-  private TextField txtPhone;
-
-  @FXML
-  private TextField txtFax;
-
-  @FXML
-  private TextField txtEmail;
-
-  @FXML
-  private TextField txtCredit;
-
-  @FXML
-  private Button btnSave;
-
-  @FXML
-  private Button btnBack;
-
-  Integer status;
 
   @FXML
   private ImageView imgLoad;
@@ -212,6 +168,8 @@ public class OrderController implements Initializable
 
   @FXML
   private ComboBox<String> toothComboBoxOne, toothComboBoxTwo, toothComboBoxThree;
+
+  private Integer status;
 
   private ToggleGroup teethToggleGroup = new ToggleGroup();
 
@@ -447,22 +405,12 @@ public class OrderController implements Initializable
     });
     service.setOnSucceeded((WorkerStateEvent event) -> {
       imgLoad.setVisible(false);
-      new FadeInUpTransition(paneTabel).play();
+      new FadeInUpTransition(paneTable).play();
     });
   }
 
   @FXML
-  private void keyState(KeyEvent e)
-  {
-    if (txtState.getText().length() > 2)
-    {
-      Config.dialog(Alert.AlertType.INFORMATION, "State Must 2 Char");
-      txtState.clear();
-    }
-  }
-
-  @FXML
-  private void aksiKlikTableData(MouseEvent event)
+  private void clickTableData()
   {
     if (status == 1)
     {
@@ -542,7 +490,7 @@ public class OrderController implements Initializable
   @FXML
   private void aksiNew(ActionEvent event)
   {
-    paneTabel.setOpacity(0);
+    paneTable.setOpacity(0);
     new FadeInUpTransition(paneCrud).play();
     Platform.runLater(() -> {
       clear();
@@ -728,7 +676,7 @@ public class OrderController implements Initializable
       txtId.requestFocus();
       return;
     }
-    paneTabel.setOpacity(0);
+    paneTable.setOpacity(0);
     paneCrud.setOpacity(0);
     new FadeInUpTransition(secondPane).play();
     Platform.runLater(() -> {
@@ -738,7 +686,7 @@ public class OrderController implements Initializable
   @FXML
   private void previous(ActionEvent event)
   {
-    paneTabel.setOpacity(0);
+    paneTable.setOpacity(0);
     secondPane.setOpacity(0);
     new FadeInUpTransition(paneCrud).play();
     Platform.runLater(() -> {
@@ -804,7 +752,7 @@ public class OrderController implements Initializable
   {
     paneCrud.setOpacity(0);
     secondPane.setOpacity(0);
-    new FadeInUpTransition(paneTabel).play();
+    new FadeInUpTransition(paneTable).play();
   }
 
   private class ButtonCell extends TableCell<Object, Boolean>
@@ -823,7 +771,7 @@ public class OrderController implements Initializable
         status = 1;
         int row = getTableRow().getIndex();
         tableData.getSelectionModel().select(row);
-        aksiKlikTableData(null);
+        clickTableData();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this data?");
         alert.initStyle(StageStyle.UTILITY);
         Optional<ButtonType> result = alert.showAndWait();
@@ -839,8 +787,8 @@ public class OrderController implements Initializable
         status = 1;
         int row = getTableRow().getIndex();
         tableData.getSelectionModel().select(row);
-        aksiKlikTableData(null);
-        paneTabel.setOpacity(0);
+        clickTableData();
+        paneTable.setOpacity(0);
         new FadeInUpTransition(paneCrud).play();
         status = 0;
       });

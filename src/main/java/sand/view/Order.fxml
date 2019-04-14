@@ -374,9 +374,9 @@
             <Label alignment="CENTER_RIGHT" layoutX="86.0" layoutY="109.0" prefHeight="17.0" prefWidth="98.0" text="Patient ID" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneTabel" layoutY="91.0" opacity="0.0" prefHeight="548.0" prefWidth="1114.0">
+      <AnchorPane fx:id="paneTable" layoutY="91.0" opacity="0.0" prefHeight="548.0" prefWidth="1114.0">
          <children>
-            <TableView fx:id="tableData" layoutY="7.0" onMouseClicked="#aksiKlikTableData" prefHeight="547.0" prefWidth="877.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="7.0">
+            <TableView fx:id="tableData" layoutY="7.0" onMouseClicked="#clickTableData" prefHeight="547.0" prefWidth="877.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="7.0">
               <columns>
                   <TableColumn fx:id="colAction" prefWidth="100.99996948242188" text="ACTION">
                      <graphic>
