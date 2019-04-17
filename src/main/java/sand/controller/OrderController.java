@@ -382,11 +382,7 @@ public class OrderController implements Initializable
           @Override
           protected Integer call() throws Exception
           {
-            Integer max = 1;
-            if (max > 35)
-            {
-              max = 30;
-            }
+            int max = 1;
             updateProgress(0, max);
             for (int k = 0; k < max; k++)
             {
@@ -488,7 +484,7 @@ public class OrderController implements Initializable
   }
 
   @FXML
-  private void aksiNew(ActionEvent event)
+  private void newTransition(ActionEvent event)
   {
     paneTable.setOpacity(0);
     new FadeInUpTransition(paneCrud).play();
